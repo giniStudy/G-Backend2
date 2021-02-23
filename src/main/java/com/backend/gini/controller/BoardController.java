@@ -29,6 +29,7 @@ public class BoardController {
 
     @GetMapping
     public Page<BoardEntity> getBoard(final Pageable pageable){
+        System.out.println(pageable);
         return boardService.getBoard(pageable);
     }
 
