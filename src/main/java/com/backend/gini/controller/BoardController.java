@@ -3,6 +3,7 @@ package com.backend.gini.controller;
 import com.backend.gini.domain.entity.BoardEntity;
 
 import com.backend.gini.service.BoardService;
+import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/board")
@@ -22,16 +22,20 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-//    @GetMapping
-//    public List<BoardEntity> getBoard(){
-//        return boardService.getAllBoard();
-//    }
-
     @GetMapping
     public Page<BoardEntity> getBoard(final Pageable pageable){
-        System.out.println(pageable);
         return boardService.getBoard(pageable);
     }
+
+    @PostMapping
+    public BoardEntity insertBoard(@RequestBody BoardEntity boardEntity){
+        return boardService.insertBoard(boardEntity);
+    }
+
+
+
+
+
 
 
     //    BID INT UNSIGNED NOT NULL AUTO_INCREMENT,

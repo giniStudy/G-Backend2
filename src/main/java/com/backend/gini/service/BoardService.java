@@ -16,11 +16,9 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
-    public List<BoardEntity> getAllBoard(){
-        return boardRepository.findAll();
-    }
-
     public Page<BoardEntity> getBoard(Pageable pageable){
         return boardRepository.findAll(pageable);
     }
+
+    public BoardEntity insertBoard(BoardEntity boardEntity){ return boardRepository.save(boardEntity);}
 }
