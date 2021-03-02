@@ -21,4 +21,12 @@ public class BoardService {
     }
 
     public BoardEntity insertBoard(BoardEntity boardEntity){ return boardRepository.save(boardEntity);}
+
+    public BoardEntity modifyBoard(BoardEntity boardEntity){
+        return boardRepository.save(boardEntity);
+    }
+
+    public void deleteBoard(Long bId){
+         boardRepository.deleteById(bId);
+    }
 }

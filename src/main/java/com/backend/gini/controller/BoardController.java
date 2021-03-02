@@ -32,6 +32,16 @@ public class BoardController {
         return boardService.insertBoard(boardEntity);
     }
 
+    @PutMapping
+    public BoardEntity modifyBoard(@RequestBody BoardEntity boardEntity){
+        return boardService.modifyBoard(boardEntity);
+    }
+
+    @DeleteMapping
+    public void deleteBoard(@PathVariable Long bId){
+         boardService.deleteBoard(bId);
+    }
+
 
 
 
@@ -42,7 +52,7 @@ public class BoardController {
 //    WRITER VARCHAR(20),
 //    TITLE VARCHAR(50),
 //    CONTENT VARCHAR(2000),
-//    DEL_FLAG VARCHAR(1) NOT NULL DEFAULT 'N',
+//    DEL_FLAG VARCHAR(1) DEFAULT 'N',
 //    UPDATE_USER VARCHAR(20),
 //    UPDATE_DATE timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 //    REG_DATE TIMESTAMP DEFAULT NOW(),
