@@ -18,6 +18,10 @@ dependencies {
 	compile 'org.projectlombok:lombok'
 	annotationProcessor('org.projectlombok:lombok')
 
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.2'
+
+
+
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile 'mysql:mysql-connector-java'

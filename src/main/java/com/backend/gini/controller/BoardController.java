@@ -3,7 +3,6 @@ package com.backend.gini.controller;
 import com.backend.gini.domain.entity.BoardEntity;
 
 import com.backend.gini.service.BoardService;
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,8 +22,13 @@ public class BoardController {
     }
 
     @GetMapping
-    public Page<BoardEntity> getBoard(final Pageable pageable){
-        return boardService.getBoard(pageable);
+    public Page<BoardEntity> getBoards(final Pageable pageable){
+        return boardService.getBoards(pageable);
+    }
+
+    @GetMapping("/{bId}")
+    public BoardEntity getContent(@PathVariable int bId){
+        return boardService.getContent(bId);
     }
 
     @PostMapping

@@ -18,8 +18,12 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
-    public Page<BoardEntity> getBoard(Pageable pageable){
+    public Page<BoardEntity> getBoards(Pageable pageable){
         return boardRepository.findAll(pageable);
+    }
+
+    public BoardEntity getContent(int bId){
+        return boardRepository.findById(bId).orElseThrow(()-> new ResourceNotFoundException("bId"));
     }
 
     public BoardEntity insertBoard(BoardEntity boardEntity){ return boardRepository.save(boardEntity);}
@@ -28,7 +32,7 @@ public class BoardService {
         BoardEntity boardEntityFromDB = boardRepository.findById(bId).orElseThrow(()-> new ResourceNotFoundException("bId"));
         boardEntityFromDB.setTitle(boardEntity.getTitle());
         boardEntityFromDB.setContent(boardEntity.getContent());
-        return boardRepository.save(boardEntityFromDB);
+        return boardRepository.save(boardEntity);
     }
 
     public void deleteBoard(int bId){
