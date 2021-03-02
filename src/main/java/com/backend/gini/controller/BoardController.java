@@ -32,13 +32,13 @@ public class BoardController {
         return boardService.insertBoard(boardEntity);
     }
 
-    @PutMapping
-    public BoardEntity modifyBoard(@RequestBody BoardEntity boardEntity){
-        return boardService.modifyBoard(boardEntity);
+    @PatchMapping("/{bId}")
+    public BoardEntity modifyBoard(@PathVariable int bId, @RequestBody BoardEntity boardEntity){
+        return boardService.modifyBoard(bId, boardEntity);
     }
 
-    @DeleteMapping
-    public void deleteBoard(@PathVariable Long bId){
+    @DeleteMapping("/{bId}")
+    public void deleteBoard(@PathVariable int bId){
          boardService.deleteBoard(bId);
     }
 
