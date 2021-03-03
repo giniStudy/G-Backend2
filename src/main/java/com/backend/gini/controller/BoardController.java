@@ -5,20 +5,21 @@ import com.backend.gini.domain.entity.BoardEntity;
 import com.backend.gini.service.BoardService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
+
 
 
 @RestController
 @RequestMapping("/board")
 public class BoardController {
     private final BoardService boardService;
+
+
     private final Logger log = LoggerFactory.getLogger(BoardController.class);
 
     public BoardController(BoardService boardService){
@@ -36,7 +37,6 @@ public class BoardController {
     }
 
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "bId", value = "번호", required = true, dataType = "string", paramType = "query", defaultValue = ""),
         @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
         @ApiImplicitParam(name = "content", value = "내용", required = true, dataType = "string", paramType = "query", defaultValue = ""),
     })
@@ -46,7 +46,7 @@ public class BoardController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "bId", value = "번호", required = true, dataType = "string", paramType = "query", defaultValue = ""),
+            @ApiImplicitParam(name = "bId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = ""),
             @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
             @ApiImplicitParam(name = "content", value = "내용", required = true, dataType = "string", paramType = "query", defaultValue = ""),
     })
@@ -55,7 +55,7 @@ public class BoardController {
         return boardService.modifyBoard(bId, boardEntity);
     }
 
-    @ApiImplicitParam(name = "bId", value = "번호", required = true, dataType = "string", paramType = "query", defaultValue = "")
+    @ApiImplicitParam(name = "bId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = "")
     @DeleteMapping("/{bId}")
     public void deleteBoard(@PathVariable int bId){
          boardService.deleteBoard(bId);
