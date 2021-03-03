@@ -1,8 +1,8 @@
 package com.backend.gini.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Table(name = "board")
-public class BoardEntity {
+public class BoardEntity extends  BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
