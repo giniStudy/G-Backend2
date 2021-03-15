@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -27,13 +29,16 @@ public class BoardController {
     }
 
     @GetMapping
-    public Page<BoardEntity> getBoards(final Pageable pageable){
-        return boardService.getBoards(pageable);
+    public ResponseEntity<Page<BoardEntity>> getBoards(final Pageable pageable){
+        Page<BoardEntity> boards =boardService.getBoards(pageable);
+        HttpStatus status = boards.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK;
+        return new ResponseEntity<Page<BoardEntity>>(boards, status);
     }
 
     @GetMapping("/{bId}")
-    public BoardEntity getContent(@PathVariable int bId){
-        return boardService.getContent(bId);
+    public ResponseEntity<BoardEntity> getContent(@PathVariable int bId){
+        BoardEntity board = boardService.getContent(bId);
+        return new ResponseEntity<>(board,HttpStatus.OK);
     }
 
     @ApiImplicitParams({
@@ -60,22 +65,4 @@ public class BoardController {
     public void deleteBoard(@PathVariable int bId){
          boardService.deleteBoard(bId);
     }
-
-
-
-
-
-
-
-    //    BID INT UNSIGNED NOT NULL AUTO_INCREMENT,
-//    WRITER VARCHAR(20),
-//    TITLE VARCHAR(50),
-//    CONTENT VARCHAR(2000),
-//    DEL_FLAG VARCHAR(1) DEFAULT 'N',
-//    UPDATE_USER VARCHAR(20),
-//    UPDATE_DATE timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-//    REG_DATE TIMESTAMP DEFAULT NOW(),
-
-
-
 }
