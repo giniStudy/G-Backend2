@@ -11,21 +11,14 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@Table(name = "board")
-public class BoardEntity extends  BaseTimeEntity{
+@Table(name = "category")
+public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty(value = "b_idx")
-    private int bIdx;
+    @JsonProperty(value = "c_idx")
+    private int cIdx;
 
     @Column(nullable = false)
-    private String title;
-
-    private String content;
-
-    @ManyToOne
-    @JoinColumn(name = "c_idx")
-    private CategoryEntity category;
-
+    private String name;
 }

@@ -20,24 +20,24 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
-    public Page<BoardEntity> getBoards(Pageable pageable){
-        return boardRepository.findAll(pageable);
+    public Page<BoardEntity> getBoards(Pageable pageable, int cIdx){
+        return cIdx == 0 ? boardRepository.findAll(pageable) : boardRepository.findAllByCategory_cIdx(cIdx, pageable);
     }
 
-    public BoardEntity getContent(int bId){
-        return boardRepository.findById(bId).orElseThrow(()-> new ResourceNotFoundException("bId"));
+    public BoardEntity getContent(int bIdx){
+        return boardRepository.findById(bIdx).orElseThrow(()-> new ResourceNotFoundException("bIdx"));
     }
 
     public BoardEntity insertBoard(BoardEntity boardEntity){ return boardRepository.save(boardEntity);}
 
-    public BoardEntity modifyBoard(int bId,BoardEntity boardEntity){
-        BoardEntity boardEntityFromDB = boardRepository.findById(bId).orElseThrow(()-> new ResourceNotFoundException("bId"));
+    public BoardEntity modifyBoard(int bIdx,BoardEntity boardEntity){
+        BoardEntity boardEntityFromDB = boardRepository.findById(bIdx).orElseThrow(()-> new ResourceNotFoundException("bIdx"));
         boardEntityFromDB.setTitle(boardEntity.getTitle());
         boardEntityFromDB.setContent(boardEntity.getContent());
         return boardRepository.save(boardEntity);
     }
 
-    public void deleteBoard(int bId){
-         boardRepository.deleteById(bId);
+    public void deleteBoard(int bIdx){
+        boardRepository.deleteById(bIdx);
     }
 }
