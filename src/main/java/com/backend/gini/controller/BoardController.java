@@ -20,9 +20,9 @@ public class BoardController {
     public BoardController(BoardService boardService){
         this.boardService = boardService;
     }
-    @ApiImplicitParam(name = "categoryId", value = "카테고리번호", required = true, dataType = "int", paramType = "query", defaultValue = "")
+    @ApiImplicitParam(name = "categoryId", value = "카테고리번호", dataType = "Integer", paramType = "query", defaultValue = "")
     @GetMapping
-    public ResponseEntity<Page<BoardEntity>> getBoards(final Pageable pageable, int categoryId){
+    public ResponseEntity<Page<BoardEntity>> getBoards(final Pageable pageable, Integer categoryId){
         Page<BoardEntity> boards = boardService.getBoards(pageable, categoryId);
         HttpStatus status = boards.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK;
         return new ResponseEntity<Page<BoardEntity>>(boards, status);

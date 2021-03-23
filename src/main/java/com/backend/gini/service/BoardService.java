@@ -20,8 +20,8 @@ public class BoardService {
         this.boardRepository = boardRepository;
     }
 
-    public Page<BoardEntity> getBoards(Pageable pageable, int categoryId){
-        return categoryId == 0 ? boardRepository.findAll(pageable) : boardRepository.findAllByCategory_categoryId(categoryId, pageable);
+    public Page<BoardEntity> getBoards(Pageable pageable, Integer categoryId){
+        return categoryId == null ? boardRepository.findAll(pageable) : boardRepository.findAllByCategory_categoryId(categoryId, pageable);
     }
 
     public BoardEntity getContent(int boardId){
