@@ -38,7 +38,7 @@ public class CategoryController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "cIdx", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = ""),
+            @ApiImplicitParam(name = "categoryId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = ""),
             @ApiImplicitParam(name = "name", value = "이름", required = true, dataType = "string", paramType = "query", defaultValue = ""),
     })
     @PatchMapping("/categoryId")
@@ -48,5 +48,5 @@ public class CategoryController {
 
     @ApiImplicitParam(name = "categoryId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = "")
     @DeleteMapping("/{categoryId}")
-    public void deleteCategory(@PathVariable int cIdx){categoryService.deleteCategory(cIdx);}
+    public void deleteCategory(@PathVariable int categoryId){categoryService.deleteCategory(categoryId);}
 }

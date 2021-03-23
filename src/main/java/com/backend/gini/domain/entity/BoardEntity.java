@@ -1,6 +1,7 @@
 package com.backend.gini.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,5 +28,4 @@ public class BoardEntity extends  BaseTimeEntity{
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
-
 }
