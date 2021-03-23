@@ -33,9 +33,10 @@ public class BoardService {
     }
 
     public BoardEntity insertBoard(BoardEntity boardEntity){
-        CategoryEntity category = categoryRepository.findById(boardEntity.getCategory().getCategoryId()).orElseThrow(()-> new ResourceNotFoundException("categoryId"));
-        boardEntity.setCategory(category);
-        System.out.println(boardEntity);
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setCategoryId(1);
+        categoryEntity.setName("java script");
+        boardEntity.setCategory(categoryEntity);
         return boardRepository.save(boardEntity);
     }
 

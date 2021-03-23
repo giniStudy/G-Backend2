@@ -35,7 +35,6 @@ public class BoardController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
             @ApiImplicitParam(name = "content", value = "내용", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-            @ApiImplicitParam(name = "categoryId", value = "카테고리번호", required = true, dataType = "Integer", paramType = "query", defaultValue = ""),
     })
     @PostMapping
     public BoardEntity insertBoard( @RequestBody BoardEntity boardEntity){
