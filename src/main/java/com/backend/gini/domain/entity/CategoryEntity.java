@@ -16,8 +16,8 @@ public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty(value = "c_idx")
-    private int cIdx;
+    @JsonProperty(value = "category_id")
+    private int categoryId;
 
     @Column(nullable = false)
     private String name;

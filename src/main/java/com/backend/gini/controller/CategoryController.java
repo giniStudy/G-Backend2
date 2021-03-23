@@ -41,12 +41,12 @@ public class CategoryController {
             @ApiImplicitParam(name = "cIdx", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = ""),
             @ApiImplicitParam(name = "name", value = "이름", required = true, dataType = "string", paramType = "query", defaultValue = ""),
     })
-    @PatchMapping("/cIdx")
-    public CategoryEntity modifyCategory(@PathVariable int cIdx, @RequestBody CategoryEntity categoryEntity){
-        return categoryService.modifyCategory(cIdx, categoryEntity);
+    @PatchMapping("/categoryId")
+    public CategoryEntity modifyCategory(@PathVariable int categoryId, @RequestBody CategoryEntity categoryEntity){
+        return categoryService.modifyCategory(categoryId, categoryEntity);
     }
 
-    @ApiImplicitParam(name = "cIdx", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = "")
-    @DeleteMapping("/{cIdx}")
+    @ApiImplicitParam(name = "categoryId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = "")
+    @DeleteMapping("/{categoryId}")
     public void deleteCategory(@PathVariable int cIdx){categoryService.deleteCategory(cIdx);}
 }

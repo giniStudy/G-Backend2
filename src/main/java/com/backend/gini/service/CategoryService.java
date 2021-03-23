@@ -26,13 +26,13 @@ public class CategoryService {
         return categoryRepository.save(categoryEntity);
     }
 
-    public CategoryEntity modifyCategory(int cIdx, CategoryEntity categoryEntity){
-        CategoryEntity categoryEntityInDB = categoryRepository.findById(cIdx).orElseThrow(()->new ResourceNotFoundException("cIdx"));
+    public CategoryEntity modifyCategory(int categoryId, CategoryEntity categoryEntity){
+        CategoryEntity categoryEntityInDB = categoryRepository.findById(categoryId).orElseThrow(()->new ResourceNotFoundException("categoryId"));
         categoryEntityInDB.setName(categoryEntity.getName());
         return categoryRepository.save(categoryEntity);
     }
 
-    public void deleteCategory(int cIdx){
-        categoryRepository.deleteById(cIdx);
+    public void deleteCategory(int categoryId){
+        categoryRepository.deleteById(categoryId);
     }
 }

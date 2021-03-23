@@ -16,8 +16,8 @@ public class BoardEntity extends  BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty(value = "b_idx")
-    private int bIdx;
+    @JsonProperty(value = "board_id")
+    private int boardId;
 
     @Column(nullable = false)
     private String title;
@@ -25,7 +25,7 @@ public class BoardEntity extends  BaseTimeEntity{
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "c_idx")
+    @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
 }
