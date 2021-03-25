@@ -1,8 +1,7 @@
 package com.backend.gini.controller;
 import com.backend.gini.domain.entity.BoardEntity;
+import com.backend.gini.domain.global.Response;
 import com.backend.gini.service.BoardService;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.Nullable;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.slf4j.Logger;
@@ -22,10 +21,9 @@ public class BoardController {
     }
     @ApiImplicitParam(name = "categoryId", value = "카테고리번호", dataType = "Integer", paramType = "query", defaultValue = "")
     @GetMapping
-    public ResponseEntity<Page<BoardEntity>> getBoards(final Pageable pageable, Integer categoryId){
+    public ResponseEntity getBoards(final Pageable pageable, Integer categoryId){
         Page<BoardEntity> boards = boardService.getBoards(pageable, categoryId);
-        HttpStatus status = boards.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK;
-        return new ResponseEntity<Page<BoardEntity>>(boards, status);
+        return new ResponseEntity(Response.res(HttpStatus.OK.value(), HttpStatus.OK.toString(), boards), HttpStatus.OK);
     }
     @GetMapping("/{boardId}")
     public ResponseEntity<BoardEntity> getContent(@PathVariable int boardId){
@@ -36,6 +34,7 @@ public class BoardController {
             @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
             @ApiImplicitParam(name = "content", value = "내용", required = true, dataType = "string", paramType = "query", defaultValue = ""),
     })
+    // path 사용
     @PostMapping
     public BoardEntity insertBoard( @RequestBody BoardEntity boardEntity){
         return boardService.insertBoard(boardEntity);
