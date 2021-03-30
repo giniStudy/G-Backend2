@@ -35,6 +35,7 @@ public class BoardService {
     public BoardEntity insertBoard(BoardEntity boardEntity, Integer categoryId){
         CategoryEntity categoryEntityInDB = categoryRepository.findById(categoryId).orElseThrow(()->new ResourceNotFoundException("categoryId"));
         boardEntity.setCategory(categoryEntityInDB);
+        boardEntity.setDeleteFlag("N");
         return boardRepository.save(boardEntity);
     }
 
