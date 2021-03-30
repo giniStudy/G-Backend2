@@ -31,22 +31,16 @@ public class CategoryController {
         return new ResponseEntity<List<CategoryEntity>>(category, status);
     }
 
-    @ApiImplicitParam(name = "name", value = "이름", required = true, dataType = "string", paramType = "query", defaultValue = "")
     @PostMapping
     public CategoryEntity insertCategory(@RequestBody CategoryEntity categoryEntity){
         return categoryService.insertCategory(categoryEntity);
     }
 
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "categoryId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = ""),
-            @ApiImplicitParam(name = "name", value = "이름", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-    })
-    @PatchMapping("/categoryId")
-    public CategoryEntity modifyCategory(@PathVariable int categoryId, @RequestBody CategoryEntity categoryEntity){
-        return categoryService.modifyCategory(categoryId, categoryEntity);
+    @PatchMapping("/{categoryId}")
+    public CategoryEntity modifyCategory(@RequestBody CategoryEntity categoryEntity, @PathVariable Integer categoryId){
+        return categoryService.modifyCategory(categoryEntity, categoryId);
     }
 
-    @ApiImplicitParam(name = "categoryId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = "")
     @DeleteMapping("/{categoryId}")
-    public void deleteCategory(@PathVariable int categoryId){categoryService.deleteCategory(categoryId);}
+    public void deleteCategory(@PathVariable Integer categoryId){categoryService.deleteCategory(categoryId);}
 }

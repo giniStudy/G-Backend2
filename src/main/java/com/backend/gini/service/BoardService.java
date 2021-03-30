@@ -25,18 +25,16 @@ public class BoardService {
     }
 
     public Page<BoardEntity> getBoards(Pageable pageable, Integer categoryId){
-        return categoryId == null ? boardRepository.findAll(pageable) : boardRepository.findAllByCategory_categoryId(categoryId, pageable);
+        return categoryId == null ? boardRepository.findAll(pageable) : boardRepository.findAllByCategory_categoryIdAndDeleteFlag(categoryId,"N" ,pageable);
     }
 
     public BoardEntity getContent(int boardId){
         return boardRepository.findById(boardId).orElseThrow(()-> new ResourceNotFoundException("boardId"));
     }
 
-    public BoardEntity insertBoard(BoardEntity boardEntity){
-        CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setCategoryId(1);
-        categoryEntity.setName("java script");
-        boardEntity.setCategory(categoryEntity);
+    public BoardEntity insertBoard(BoardEntity boardEntity, Integer categoryId){
+        CategoryEntity categoryEntityInDB = categoryRepository.findById(categoryId).orElseThrow(()->new ResourceNotFoundException("categoryId"));
+        boardEntity.setCategory(categoryEntityInDB);
         return boardRepository.save(boardEntity);
     }
 
@@ -44,10 +42,12 @@ public class BoardService {
         BoardEntity boardEntityFromDB = boardRepository.findById(boardId).orElseThrow(()-> new ResourceNotFoundException("boardId"));
         boardEntityFromDB.setTitle(boardEntity.getTitle());
         boardEntityFromDB.setContent(boardEntity.getContent());
-        return boardRepository.save(boardEntity);
+        return boardRepository.save(boardEntityFromDB);
     }
 
-    public void deleteBoard(int boardId){
-        boardRepository.deleteById(boardId);
+    public BoardEntity deleteBoard(int boardId){
+        BoardEntity boardEntityFromDB = boardRepository.findById(boardId).orElseThrow(()-> new ResourceNotFoundException("boardId"));
+        boardEntityFromDB.setDeleteFlag("Y");
+        return boardRepository.save(boardEntityFromDB);
     }
 }

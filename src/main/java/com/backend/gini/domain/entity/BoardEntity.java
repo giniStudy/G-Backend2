@@ -25,6 +25,8 @@ public class BoardEntity extends  BaseTimeEntity{
 
     private String content;
 
+    private String deleteFlag;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;

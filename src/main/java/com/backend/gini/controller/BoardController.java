@@ -19,7 +19,7 @@ public class BoardController {
     public BoardController(BoardService boardService){
         this.boardService = boardService;
     }
-    @ApiImplicitParam(name = "categoryId", value = "카테고리번호", dataType = "Integer", paramType = "query", defaultValue = "")
+
     @GetMapping
     public ResponseEntity getBoards(final Pageable pageable, Integer categoryId){
         Page<BoardEntity> boards = boardService.getBoards(pageable, categoryId);
@@ -30,27 +30,19 @@ public class BoardController {
         BoardEntity board = boardService.getContent(boardId);
         return new ResponseEntity<>(board,HttpStatus.OK);
     }
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-            @ApiImplicitParam(name = "content", value = "내용", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-    })
-    // path 사용
-    @PostMapping
-    public BoardEntity insertBoard( @RequestBody BoardEntity boardEntity){
-        return boardService.insertBoard(boardEntity);
+
+    @PostMapping("/{categoryId}")
+    public BoardEntity insertBoard( @RequestBody BoardEntity boardEntity, @PathVariable Integer categoryId){
+        return boardService.insertBoard(boardEntity, categoryId);
     }
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "boardId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = ""),
-            @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-            @ApiImplicitParam(name = "content", value = "내용", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-    })
+
     @PatchMapping("/{boardId}")
     public BoardEntity modifyBoard(@PathVariable int boardId, @RequestBody BoardEntity boardEntity){
         return boardService.modifyBoard(boardId, boardEntity);
     }
-    @ApiImplicitParam(name = "boardId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = "")
+
     @DeleteMapping("/{boardId}")
-    public void deleteBoard(@PathVariable int boardId){
-        boardService.deleteBoard(boardId);
+    public BoardEntity deleteBoard(@PathVariable int boardId){
+        return boardService.deleteBoard(boardId);
     }
 }
