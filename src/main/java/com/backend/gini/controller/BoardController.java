@@ -1,10 +1,10 @@
 package com.backend.gini.controller;
 import com.backend.gini.domain.entity.BoardEntity;
+import com.backend.gini.domain.global.Response;
 import com.backend.gini.service.BoardService;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.Nullable;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+@Api
 @RestController
 @RequestMapping("/board")
 public class BoardController {
@@ -20,38 +22,36 @@ public class BoardController {
     public BoardController(BoardService boardService){
         this.boardService = boardService;
     }
-    @ApiImplicitParam(name = "categoryId", value = "카테고리번호", required = true, dataType = "int", paramType = "query", defaultValue = "")
+
+    @ApiOperation(value = "게시글 목록 검색", notes = "<strong>카테고리번호(category_id) -> 없으면 전체검색</strong>")
     @GetMapping
-    public ResponseEntity<Page<BoardEntity>> getBoards(final Pageable pageable, int categoryId){
+    public ResponseEntity getBoards(final Pageable pageable, Integer categoryId){
         Page<BoardEntity> boards = boardService.getBoards(pageable, categoryId);
-        HttpStatus status = boards.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK;
-        return new ResponseEntity<Page<BoardEntity>>(boards, status);
+        return new ResponseEntity(Response.res(HttpStatus.OK.value(), HttpStatus.OK.toString(), boards), HttpStatus.OK);
     }
+
+    @ApiOperation(value = "게시글 검색")
     @GetMapping("/{boardId}")
     public ResponseEntity<BoardEntity> getContent(@PathVariable int boardId){
         BoardEntity board = boardService.getContent(boardId);
         return new ResponseEntity<>(board,HttpStatus.OK);
     }
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-            @ApiImplicitParam(name = "content", value = "내용", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-    })
-    @PostMapping
-    public BoardEntity insertBoard( @RequestBody BoardEntity boardEntity){
-        return boardService.insertBoard(boardEntity);
+
+    @ApiOperation(value = "게시글 작성", notes = "<strong>제목(title), 내용(content)</strong>")
+    @PostMapping("/{categoryId}")
+    public BoardEntity insertBoard( @RequestBody BoardEntity boardEntity, @PathVariable Integer categoryId){
+        return boardService.insertBoard(boardEntity, categoryId);
     }
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "boardId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = ""),
-            @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-            @ApiImplicitParam(name = "content", value = "내용", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-    })
+
+    @ApiOperation(value = "게시글 수정", notes = "<strong>제목(title), 내용(content)</strong>")
     @PatchMapping("/{boardId}")
     public BoardEntity modifyBoard(@PathVariable int boardId, @RequestBody BoardEntity boardEntity){
         return boardService.modifyBoard(boardId, boardEntity);
     }
-    @ApiImplicitParam(name = "boardId", value = "번호", required = true, dataType = "string", paramType = "path", defaultValue = "")
+
+    @ApiOperation(value = "게시글 삭제")
     @DeleteMapping("/{boardId}")
-    public void deleteBoard(@PathVariable int boardId){
-        boardService.deleteBoard(boardId);
+    public BoardEntity deleteBoard(@PathVariable int boardId){
+        return boardService.deleteBoard(boardId);
     }
 }
