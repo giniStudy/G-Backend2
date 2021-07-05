@@ -5,6 +5,9 @@ import com.backend.gini.service.BoardService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -14,14 +17,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Api
+@Slf4j
 @RestController
 @RequestMapping("/board")
+@RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
-    private final Logger log = LoggerFactory.getLogger(BoardController.class);
-    public BoardController(BoardService boardService){
-        this.boardService = boardService;
-    }
 
     @ApiOperation(value = "게시글 목록 검색", notes = "<strong>카테고리번호(category_id) -> 없으면 전체검색</strong>")
     @GetMapping
@@ -38,9 +39,9 @@ public class BoardController {
     }
 
     @ApiOperation(value = "게시글 작성", notes = "<strong>제목(title), 내용(content)</strong>")
-    @PostMapping("/{categoryId}")
-    public BoardEntity insertBoard( @RequestBody BoardEntity boardEntity, @PathVariable Integer categoryId){
-        return boardService.insertBoard(boardEntity, categoryId);
+    @PostMapping
+    public BoardEntity insertBoard( @RequestBody BoardEntity boardEntity){
+        return boardService.insertBoard(boardEntity);
     }
 
     @ApiOperation(value = "게시글 수정", notes = "<strong>제목(title), 내용(content)</strong>")

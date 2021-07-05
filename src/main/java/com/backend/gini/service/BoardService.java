@@ -32,10 +32,7 @@ public class BoardService {
         return boardRepository.findById(boardId).orElseThrow(()-> new ResourceNotFoundException("boardId"));
     }
 
-    public BoardEntity insertBoard(BoardEntity boardEntity, Integer categoryId){
-        CategoryEntity categoryEntityInDB = categoryRepository.findById(categoryId).orElseThrow(()->new ResourceNotFoundException("categoryId"));
-        boardEntity.setCategory(categoryEntityInDB);
-        boardEntity.setDeleteFlag("N");
+    public BoardEntity insertBoard(BoardEntity boardEntity){
         return boardRepository.save(boardEntity);
     }
 
