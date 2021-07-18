@@ -1,8 +1,7 @@
 package com.backend.gini.service;
 
-import com.backend.gini.controller.BoardController;
+import com.backend.gini.web.BoardController;
 import com.backend.gini.domain.entity.BoardEntity;
-import com.backend.gini.domain.entity.CategoryEntity;
 import com.backend.gini.domain.repository.BoardRepository;
 import com.backend.gini.domain.repository.CategoryRepository;
 import org.slf4j.Logger;

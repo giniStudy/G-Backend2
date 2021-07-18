@@ -1,9 +1,8 @@
-package com.backend.gini.controller;
+package com.backend.gini.web;
 
 import com.backend.gini.domain.entity.CategoryEntity;
 import com.backend.gini.service.CategoryService;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
