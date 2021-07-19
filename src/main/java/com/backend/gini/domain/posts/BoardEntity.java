@@ -1,5 +1,7 @@
-package com.backend.gini.domain.entity;
+package com.backend.gini.domain.posts;
 
+import com.backend.gini.domain.entity.BaseTimeEntity;
+import com.backend.gini.domain.entity.CategoryEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +15,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Table(name = "board")
-public class BoardEntity extends  BaseTimeEntity{
+public class BoardEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

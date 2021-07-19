@@ -10,6 +10,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @MappedSuperclass
@@ -18,9 +19,9 @@ import java.util.Date;
 public class BaseTimeEntity {
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
+    private LocalDateTime createDate;
 
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
-    private Date modifiedDate;
+    private LocalDateTime modifiedDate;
 }

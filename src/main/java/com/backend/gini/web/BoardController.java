@@ -1,5 +1,5 @@
 package com.backend.gini.web;
-import com.backend.gini.domain.entity.BoardEntity;
+import com.backend.gini.domain.posts.BoardEntity;
 import com.backend.gini.domain.global.Response;
 import com.backend.gini.service.BoardService;
 
