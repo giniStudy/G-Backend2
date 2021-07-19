@@ -1,15 +1,13 @@
 package com.backend.gini.domain.entity;
 
+import com.backend.gini.config.LocalDateTimeAttributeConverter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -17,11 +15,11 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 public class BaseTimeEntity {
+    @Convert(converter = LocalDateTimeAttributeConverter.class)
     @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createDate;
 
+    @Convert(converter = LocalDateTimeAttributeConverter.class)
     @LastModifiedDate
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime modifiedDate;
 }

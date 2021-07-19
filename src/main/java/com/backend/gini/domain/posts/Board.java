@@ -10,12 +10,13 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@Entity
+
 @Getter
 @Setter
 @ToString
+@Entity
 @Table(name = "board")
-public class BoardEntity extends BaseTimeEntity {
+public class Board extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
