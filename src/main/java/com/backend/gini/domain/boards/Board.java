@@ -1,26 +1,24 @@
-package com.backend.gini.domain.posts;
+package com.backend.gini.domain.boards;
 
 import com.backend.gini.domain.entity.BaseTimeEntity;
 import com.backend.gini.domain.entity.CategoryEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
 
 @Getter
-@Setter
 @ToString
 @Entity
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "board")
 public class Board extends BaseTimeEntity {
 
+    @JsonProperty(value = "board_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty(value = "board_id")
     private int boardId;
 
     @Column(nullable = false)
@@ -33,4 +31,10 @@ public class Board extends BaseTimeEntity {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
+
+    @Builder
+    public Board(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }

@@ -1,8 +1,8 @@
 package com.backend.gini.service;
 
 import com.backend.gini.web.BoardController;
-import com.backend.gini.domain.posts.Board;
-import com.backend.gini.domain.repository.BoardRepository;
+import com.backend.gini.domain.boards.Board;
+import com.backend.gini.domain.boards.BoardRepository;
 import com.backend.gini.domain.repository.CategoryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +37,7 @@ public class BoardService {
 
     public Board modifyBoard(int boardId, Board boardEntity){
         Board boardEntityFromDB = boardRepository.findById(boardId).orElseThrow(()-> new ResourceNotFoundException("boardId"));
+
         boardEntityFromDB.setTitle(boardEntity.getTitle());
         boardEntityFromDB.setContent(boardEntity.getContent());
         return boardRepository.save(boardEntityFromDB);
