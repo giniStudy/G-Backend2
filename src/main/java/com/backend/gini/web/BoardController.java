@@ -23,9 +23,9 @@ public class BoardController {
 
     @ApiOperation(value = "게시글 목록 검색", notes = "<strong>카테고리번호(category_id) -> 없으면 전체검색</strong>")
     @GetMapping
-    public ResponseEntity getBoards(final Pageable pageable, Integer categoryId){
+    public ResponseEntity<?> getBoards(final Pageable pageable, Integer categoryId){
         Page<Board> boards = boardService.getBoards(pageable, categoryId);
-        return new ResponseEntity(Response.res(HttpStatus.OK.value(), HttpStatus.OK.toString(), boards), HttpStatus.OK);
+        return ResponseEntity.ok(boardService.getBoards(pageable, categoryId));
     }
 
     @ApiOperation(value = "게시글 검색")
