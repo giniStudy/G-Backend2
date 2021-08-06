@@ -1,15 +1,10 @@
 package com.backend.gini.service;
 
-import com.backend.gini.web.BoardController;
 import com.backend.gini.domain.boards.Board;
 import com.backend.gini.domain.boards.BoardRepository;
-import com.backend.gini.domain.repository.CategoryRepository;
-import lombok.AccessLevel;
+import com.backend.gini.domain.boards.CategoryRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;

@@ -1,4 +1,4 @@
-package com.backend.gini.domain.entity;
+package com.backend.gini.domain.boards;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -11,19 +11,18 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "category")
-public class CategoryEntity {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(value = "category_id")
-    private Integer categoryId;
+    private Long categoryId;
 
     @Column(nullable = false)
     private String name;
 
     @Builder
-    public CategoryEntity(String name) {
+    public Category(String name) {
         this.name = name;
     }
 }

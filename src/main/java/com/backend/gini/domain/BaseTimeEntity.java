@@ -1,4 +1,4 @@
-package com.backend.gini.domain.entity;
+package com.backend.gini.domain;
 
 import com.backend.gini.config.LocalDateTimeAttributeConverter;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,9 +17,9 @@ import java.util.Date;
 public class BaseTimeEntity {
     @Convert(converter = LocalDateTimeAttributeConverter.class)
     @CreatedDate
-    private LocalDateTime createDate;
+    private LocalDateTime createDt;
 
     @Convert(converter = LocalDateTimeAttributeConverter.class)
     @LastModifiedDate
-    private LocalDateTime modifiedDate;
+    private LocalDateTime modifiedDt;
 }

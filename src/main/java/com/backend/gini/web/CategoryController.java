@@ -1,6 +1,6 @@
 package com.backend.gini.web;
 
-import com.backend.gini.domain.entity.CategoryEntity;
+import com.backend.gini.domain.boards.Category;
 import com.backend.gini.service.CategoryService;
 
 import io.swagger.annotations.ApiOperation;
@@ -25,21 +25,21 @@ public class CategoryController {
 
     @ApiOperation(value = "카테고리 검색")
     @GetMapping
-    public ResponseEntity<List<CategoryEntity>> getCategoryList(){
-        List<CategoryEntity> category = categoryService.getCategoryList();
+    public ResponseEntity<List<Category>> getCategoryList(){
+        List<Category> category = categoryService.getCategoryList();
         HttpStatus status = category.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK;
-        return new ResponseEntity<List<CategoryEntity>>(category, status);
+        return new ResponseEntity<List<Category>>(category, status);
     }
 
     @ApiOperation(value = "카테고리 추가", notes = "<strong>카테고리 제목(name)</strong>")
     @PostMapping
-    public CategoryEntity insertCategory(@RequestBody CategoryEntity categoryEntity){
+    public Category insertCategory(@RequestBody Category categoryEntity){
         return categoryService.insertCategory(categoryEntity);
     }
 
     @ApiOperation(value = "카테고리 수정", notes = "<strong>카테고리 제목(name)</strong>")
     @PatchMapping("/{categoryId}")
-    public CategoryEntity modifyCategory(@RequestBody CategoryEntity categoryEntity, @PathVariable Integer categoryId){
+    public Category modifyCategory(@RequestBody Category categoryEntity, @PathVariable Integer categoryId){
         return categoryService.modifyCategory(categoryEntity, categoryId);
     }
 

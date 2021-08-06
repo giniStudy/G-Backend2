@@ -1,7 +1,6 @@
 package com.backend.gini.domain.boards;
 
-import com.backend.gini.domain.entity.BaseTimeEntity;
-import com.backend.gini.domain.entity.CategoryEntity;
+import com.backend.gini.domain.BaseTimeEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -13,13 +12,12 @@ import javax.persistence.*;
 @Entity
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "board")
 public class Board extends BaseTimeEntity {
 
     @JsonProperty(value = "board_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int boardId;
+    private Long boardId;
 
     @Column(nullable = false)
     private String title;
@@ -28,9 +26,9 @@ public class Board extends BaseTimeEntity {
 
     private String deleteFlag;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    private CategoryEntity category;
+    private Category category;
 
     @Builder
     public Board(String title, String content){
