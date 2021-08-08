@@ -22,11 +22,12 @@ public class Board extends BaseTimeEntity {
 
     private String content;
 
-    private String deleteFlag;
+    private Boolean deleteFlag;
 
     @Builder
     public Board(String title, String content){
         this.title = title;
         this.content = content;
+
     }
 }

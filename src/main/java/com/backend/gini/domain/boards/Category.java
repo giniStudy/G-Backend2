@@ -7,10 +7,11 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class Category extends BaseTimeEntity {
 
     @Id
