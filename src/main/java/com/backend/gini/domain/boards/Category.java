@@ -16,12 +16,10 @@ public class Category extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(value = "category_id")
-    private Long seq;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
-
-    List<Board> boardList;
 
     @Builder
     public Category(String name) {

@@ -14,16 +14,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class HelloControllerTest {
 
-    @Autowired
-    private MockMvc mock;
-    /**
-     * 테스트 코드 작성법
-     * */
-    @Test
-    public void hello가_리턴된다() throws Exception {
-        String hello = "Hello word!";
-        mock.perform(get("/api/hello"))
-        .andExpect(status().isOk())
-        .andExpect(content().string(hello));
-    }
+//    @Autowired
+//    private MockMvc mock;
+//    /**
+//     * 테스트 코드 작성법
+//     * */
+//    @Test
+//    public void hello가_리턴된다() throws Exception {
+//        String hello = "Hello word!";
+//        mock.perform(get("/api/hello"))
+//        .andExpect(status().isOk())
+//        .andExpect(content().string(hello));
+//    }
 }

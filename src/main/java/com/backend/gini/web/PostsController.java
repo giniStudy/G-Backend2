@@ -6,9 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostsController {
+    /*
     private final BoardService boardService;
 
     @ApiOperation(value = "게시글 목록 검색", notes = "<strong>카테고리번호(category_id) -> 없으면 전체검색</strong>")
@@ -49,4 +48,5 @@ public class PostsController {
     public ResponseEntity<Board> deleteBoard(@PathVariable int boardId){
         return ResponseEntity.ok(null);
     }
+    */
 }

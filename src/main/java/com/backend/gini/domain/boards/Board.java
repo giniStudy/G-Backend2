@@ -9,15 +9,13 @@ import javax.persistence.*;
 
 @Getter
 @ToString
-@Entity
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class Board extends BaseTimeEntity {
 
-    @JsonProperty(value = "board_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long boardId;
+    private Long id;
 
     @Column(nullable = false)
     private String title;
@@ -25,10 +23,6 @@ public class Board extends BaseTimeEntity {
     private String content;
 
     private String deleteFlag;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
 
     @Builder
     public Board(String title, String content){
