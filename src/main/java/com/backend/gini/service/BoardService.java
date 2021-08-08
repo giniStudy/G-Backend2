@@ -18,31 +18,5 @@ import javax.transaction.Transactional;
 @Service
 public class BoardService {
     private final BoardRepository boardRepository;
-    private final CategoryRepository categoryRepository;
 
-    public Page<Board> getBoards(Pageable pageable, Integer categoryId){
-        return categoryId == null ? boardRepository.findAll(pageable) : boardRepository.findAllByCategory_categoryIdAndDeleteFlag(categoryId,"N" ,pageable);
-    }
-
-    public Board getContent(int boardId){
-        return boardRepository.findById(boardId).orElseThrow(()-> new ResourceNotFoundException("boardId"));
-    }
-
-    public Board insertBoard(Board boardEntity){
-        return boardRepository.save(boardEntity);
-    }
-
-    public Board modifyBoard(int boardId, Board boardEntity){
-        Board boardEntityFromDB = boardRepository.findById(boardId).orElseThrow(()-> new ResourceNotFoundException("boardId"));
-
-        boardEntityFromDB.setTitle(boardEntity.getTitle());
-        boardEntityFromDB.setContent(boardEntity.getContent());
-        return boardRepository.save(boardEntityFromDB);
-    }
-
-    public Board deleteBoard(int boardId){
-        Board boardEntityFromDB = boardRepository.findById(boardId).orElseThrow(()-> new ResourceNotFoundException("boardId"));
-        boardEntityFromDB.setDeleteFlag("Y");
-        return boardRepository.save(boardEntityFromDB);
-    }
 }
