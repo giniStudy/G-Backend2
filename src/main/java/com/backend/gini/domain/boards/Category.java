@@ -1,9 +1,7 @@
-package com.backend.gini.domain.entity;
+package com.backend.gini.domain.boards;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,14 +10,19 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@Table(name = "category")
-public class CategoryEntity {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(value = "category_id")
-    private Integer categoryId;
+    private Long categoryId;
 
     @Column(nullable = false)
     private String name;
+
+    @Builder
+    public Category(String name) {
+        this.name = name;
+    }
 }
