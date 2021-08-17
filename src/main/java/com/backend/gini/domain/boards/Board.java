@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Getter
@@ -22,12 +23,14 @@ public class Board extends BaseTimeEntity {
 
     private String content;
 
-    private Boolean deleteFlag;
+    private Boolean deleteFlag = false;
+
+    @OneToMany(mappedBy = "board_id")
+    List<Category> categories;
 
     @Builder
     public Board(String title, String content){
         this.title = title;
         this.content = content;
-
     }
 }
