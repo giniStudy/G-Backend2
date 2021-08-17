@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,7 +27,7 @@ public class Board extends BaseTimeEntity {
     private Boolean deleteFlag = false;
 
     @OneToMany(mappedBy = "board_id")
-    List<Category> categories;
+    List<Category> categories = new ArrayList<>();
 
     @Builder
     public Board(String title, String content){
