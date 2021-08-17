@@ -26,8 +26,9 @@ public class Board extends BaseTimeEntity {
 
     private Boolean deleteFlag = false;
 
-    @OneToMany(mappedBy = "board_id")
-    List<Category> categories = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    Category category;
 
     @Builder
     public Board(String title, String content){
