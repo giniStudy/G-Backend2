@@ -19,8 +19,8 @@ public class Category extends BaseTimeEntity {
     @JsonProperty(value = "id")
     private Long id;
 
-    @OneToMany(mappedBy = "category_id")
-    private List<Board> Board;
+//    @OneToMany(mappedBy = "category_id")
+//    private List<Board> Board;
 
     @Column(nullable = false)
     private String name;

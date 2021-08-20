@@ -2,6 +2,7 @@ package com.backend.gini.web;
 import com.backend.gini.domain.boards.Board;
 import com.backend.gini.service.BoardService;
 
+import com.backend.gini.web.dto.BoardsReuqest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -16,14 +17,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostsController {
-    /*
+
     private final BoardService boardService;
 
     @ApiOperation(value = "게시글 목록 검색", notes = "<strong>카테고리번호(category_id) -> 없으면 전체검색</strong>")
     @GetMapping
-    public ResponseEntity<?> getBoards(final Pageable pageable, Integer categoryId){
-        return ResponseEntity.ok(null);
+    public ResponseEntity<?> getBoards(@RequestBody BoardsReuqest request){
+        return ResponseEntity.ok(boardService.getBoards(request));
     }
+    /*
+    private final BoardService boardService;
+
+
 
     @ApiOperation(value = "게시글 검색")
     @GetMapping("/{boardId}")
