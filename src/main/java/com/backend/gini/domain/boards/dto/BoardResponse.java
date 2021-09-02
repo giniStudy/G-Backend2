@@ -1,4 +1,4 @@
-package com.backend.gini.web.dto;
+package com.backend.gini.domain.boards.dto;
 
 import lombok.AccessLevel;
 import lombok.Getter;

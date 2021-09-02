@@ -1,13 +1,11 @@
 package com.backend.gini.web;
-import com.backend.gini.domain.boards.Board;
 import com.backend.gini.service.BoardService;
 
-import com.backend.gini.web.dto.BoardsReuqest;
+import com.backend.gini.domain.boards.dto.BoardsReuqest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

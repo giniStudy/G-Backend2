@@ -3,7 +3,7 @@ package com.backend.gini.service;
 import com.backend.gini.domain.boards.BoardRepository;
 import com.backend.gini.domain.boards.Category;
 import com.backend.gini.domain.boards.CategoryRepository;
-import com.backend.gini.web.dto.BoardsReuqest;
+import com.backend.gini.domain.boards.dto.BoardsReuqest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
