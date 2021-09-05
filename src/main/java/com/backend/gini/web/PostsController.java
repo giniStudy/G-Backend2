@@ -40,6 +40,12 @@ public class PostsController {
         return ResponseEntity.ok(boardService.createCategory(boardDto));
     }
 
+    @ApiOperation(value = "category 조회")
+    @GetMapping("/category")
+    public ResponseEntity<?> getCategory(){
+        return ResponseEntity.ok(boardService.getCategorys());
+    }
+
     /*
     private final BoardService boardService;
 

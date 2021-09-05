@@ -41,4 +41,8 @@ public class BoardService {
         return categoryRepository.save(categoryDto.toCategory()).toCategoryDto();
     }
 
+    public List<?> getCategorys(){
+        return categoryRepository.findAll().stream().map(e->e.toCategoryDto()).collect(Collectors.toList());
+    }
+
 }
