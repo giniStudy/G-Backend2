@@ -1,38 +1,44 @@
 package com.backend.gini.domain.boards;
 
 import com.backend.gini.domain.BaseTimeEntity;
+import com.backend.gini.web.dto.BoardDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
 @ToString
-@Entity
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class Board extends BaseTimeEntity {
 
-    @JsonProperty(value = "board_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long boardId;
+    private Long id;
 
     @Column(nullable = false)
     private String title;
 
     private String content;
 
-    private String deleteFlag;
+    private Boolean deleteFlag = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    private Category category;
+    Category category;
 
     @Builder
-    public Board(String title, String content){
+    public Board(String title, String content, Category category){
         this.title = title;
         this.content = content;
+        this.category = category;
+    }
+
+    public BoardDto toBoardDto(){
+        return BoardDto.builder().id(id).title(title).content(content).createDt(getCreateDt()).modifiedDt(getModifiedDt()).build();
     }
 }

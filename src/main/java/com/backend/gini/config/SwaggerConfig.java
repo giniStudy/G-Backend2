@@ -1,4 +1,4 @@
-package com.backend.gini;
+package com.backend.gini.config;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

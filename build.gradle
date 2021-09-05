@@ -22,8 +22,6 @@ plugins {
 group = 'com.backend'
 version = '0.0.1-SNAPSHOT'
 
-sourceCompatibility = '11'
-
 repositories {
 	mavenCentral()
 	jcenter()
@@ -66,9 +64,9 @@ dependencies {
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
 
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-client
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client'
+//	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client'
 
-
+	compile("org.springframework.boot:spring-boot-devtools")
 }
 
 test {

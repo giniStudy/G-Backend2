@@ -1,22 +1,27 @@
 package com.backend.gini.domain.boards;
 
+import com.backend.gini.domain.BaseTimeEntity;
+import com.backend.gini.web.dto.CategoryDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Category {
+@Entity
+public class Category extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty(value = "category_id")
-    private Long categoryId;
+    @JsonProperty(value = "id")
+    private Long id;
+
+//    @OneToMany(mappedBy = "category_id")
+//    private List<Board> Board;
 
     @Column(nullable = false)
     private String name;
@@ -24,5 +29,9 @@ public class Category {
     @Builder
     public Category(String name) {
         this.name = name;
+    }
+
+    public CategoryDto toCategoryDto(){
+        return CategoryDto.builder().id(id).name(name).build();
     }
 }
