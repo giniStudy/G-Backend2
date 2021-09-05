@@ -17,4 +17,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seq;
+
+    private String username;
+
+    private String pwd;
+
+    private String nickName;
+
 }
