@@ -1,6 +1,7 @@
 package com.backend.gini.domain.boards;
 
 import com.backend.gini.domain.BaseTimeEntity;
+import com.backend.gini.web.dto.BoardDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -31,8 +32,13 @@ public class Board extends BaseTimeEntity {
     Category category;
 
     @Builder
-    public Board(String title, String content){
+    public Board(String title, String content, Category category){
         this.title = title;
         this.content = content;
+        this.category = category;
+    }
+
+    public BoardDto toBoardDto(){
+        return BoardDto.builder().id(id).title(title).content(content).createDt(getCreateDt()).modifiedDt(getModifiedDt()).build();
     }
 }
