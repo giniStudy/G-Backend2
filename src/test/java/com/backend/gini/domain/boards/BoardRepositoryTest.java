@@ -1,6 +1,6 @@
 package com.backend.gini.domain.boards;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -14,7 +14,7 @@ class BoardRepositoryTest {
     @Autowired
     BoardRepository boardRepository;
 
-    @Test
+//    @Test
     public void 게시글저장_불러오기(){
         String title = "테스트 게시글";
         String content = "본문";
