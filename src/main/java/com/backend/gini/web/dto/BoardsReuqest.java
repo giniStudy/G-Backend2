@@ -1,4 +1,4 @@
-package com.backend.gini.domain.boards.dto;
+package com.backend.gini.web.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
