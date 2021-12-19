@@ -5,10 +5,11 @@ spring:
     include: google
 
 
-
+# server port setting
 server:
   port: 8080
-  servlet.context-path: /api
+#  Api default url: /api
+#  servlet.context-path: /api
 
 
 spring.jackson.property-naming-strategy: SNAKE_CASE
